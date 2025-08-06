@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invitación XV Años | Karla Harumi</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome (íconos decorativos y mariposas) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+
+  <style>
+    :root {
+      --verde-esmeralda:#0B5345;
+      --dorado:#D4AF37;
+      --blanco:#ffffff;
+      --gris-claro:#f9f9f9;
+      --negro-suave:#222;
+    }
+
+    /* RESET */
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'Poppins',sans-serif;color:var(--negro-suave);background:var(--blanco);overflow-x:hidden}
+    h1,h2,h3{font-family:'Great Vibes',cursive}
+
+    /* DIVIDER animado */
+    .divider{width:100%;height:45px;background:linear-gradient(135deg,var(--verde-esmeralda)25%,var(--dorado)25%,var(--dorado)50%,var(--verde-esmeralda)50%,var(--verde-esmeralda)75%,var(--dorado)75%,var(--dorado)100%);background-size:400% 400%;animation:slide 15s linear infinite}
+    @keyframes slide{0%{background-position:0 0}100%{background-position:100% 100%}}
+
+    /* Banners completos */
+    .banner-full img{width:100%;display:block}
+
+    /* HERO (foto de Karla) */
+    #hero{position:relative;min-height:100vh;background:url('img/IMG1.jpeg') center/cover no-repeat fixed;display:flex;align-items:center;justify-content:center;text-align:center}
+    #hero::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.45)}
+    #hero .content{position:relative;z-index:1;color:var(--blanco);padding:0 1rem}
+    #hero h1{font-size:4rem;color:var(--dorado);letter-spacing:2px}
+    #hero h2{font-size:2.3rem;margin-top:.3rem}
+    #hero p{margin-top:1.4rem;line-height:1.4}
+
+    /* INTRO MÚSICA */
+    #intro-musica{background:var(--verde-esmeralda);color:#fff;text-align:center;padding:100px 30px;position:relative;overflow:hidden}
+    #intro-musica h2{font-size:3.1rem;color:var(--dorado);margin-bottom:20px}
+    #intro-musica p{font-size:1.15rem;margin-bottom:24px}
+    #music-btn-large{background:var(--dorado);color:#fff;border:none;padding:16px 34px;font-size:1.2rem;border-radius:30px;cursor:pointer;box-shadow:0 4px 8px rgba(0,0,0,.2)}
+
+    /* SECCIONES genéricas */
+    section{padding:80px 20px;text-align:center;position:relative;overflow:hidden}
+    .section-title{font-size:2.8rem;color:var(--verde-esmeralda);margin-bottom:18px;display:inline-flex;align-items:center;gap:10px}
+    .section-title .fa{color:var(--dorado)}
+    .section-sub{font-size:1.1rem;margin-bottom:30px;font-weight:300}
+
+    /* EVENTO */
+    #evento p{margin:8px 0;font-size:1.1rem;font-weight:300}
+    #evento strong{color:var(--dorado)}
+
+    /* GALERÍA */
+    #galeria{background:var(--gris-claro)}
+    .galeria-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:25px;max-width:1000px;margin:0 auto}
+    .galeria-grid img{width:100%;max-width:300px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.25);transition:transform .35s}
+    .galeria-grid img:hover{transform:scale(1.07)}
+
+    /* MAPA */
+    #mapa iframe{width:90%;max-width:800px;height:340px;border:none;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.3)}
+
+    /* CONFIRMACIÓN */
+    #confirmacion form{max-width:450px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+    #confirmacion input,#confirmacion button{padding:14px 18px;border-radius:8px;font-size:1rem}
+    #confirmacion input{border:1px solid #ccc}
+    #confirmacion button{background:var(--dorado);color:#fff;font-weight:600;border:none;cursor:pointer;transition:background .3s}
+    #confirmacion button:hover{background:#c29e30}
+
+    /* AGRADECIMIENTO */
+    #agradecimiento p{max-width:700px;margin:0 auto 16px}
+
+    /* FOOTER */
+    footer{background:var(--verde-esmeralda);color:#fff;padding:22px 10px;font-size:.95rem}
+
+    /* MARIPOSAS */
+    .butterfly{position:absolute;font-size:22px;opacity:0;pointer-events:none}
+
+    @media(max-width:650px){#hero h1{font-size:3rem}#hero h2{font-size:1.7rem}section{padding:70px 15px}}
+  </style>
+</head>
+<body>
+  <!-- Música de fondo -->
+  <audio id="bg-music" src="music.mp3" autoplay loop></audio>
+
+  <!-- Banner de bienvenida (PNG1) -->
+  <div class="banner-full" data-animate><img src="img/PNG1.png" alt="Banner Karla"/></div>
+
+  <!-- HERO (foto de Karla) -->
+  <section id="hero" data-animate>
+    <div class="content">
+      <h1><i class="fa-solid fa-crown"></i>Mis XV Años</h1>
+      <h2>Karla Harumi Salinas Estrada</h2>
+      <p>Con amor de sus padres<br><strong>Carlos Salinas Espinoza</strong> y <strong>Yucaira Estrada Garza</strong></p>
+    </div>
+  </section>
+
+  <!-- Introducción y botón de música -->
+  <section id="intro-musica" data-animate>
+    <h2>Bienvenido a un día inolvidable</h2>
+    <p>Hoy celebramos la magia de la juventud, los sueños que florecen y el corazón de una niña que se convierte en mujer.</p>
+    <p>Gracias por ser parte de este capítulo tan especial en la vida de Karla Harumi.</p>
+    <button id="music-btn-large"><i class="fa-solid fa-music"></i> Iniciar Música</button>
+  </section>
+
+  <!-- Banner fecha/hora (PNG2) -->
+  <div class="banner-full" data-animate><img src="img/PNG2.png" alt="Banner Fecha"/></div>
+
+  <div class="divider"></div>
+
+  <!-- Evento -->
+  <section id="evento" data-animate>
+    <h2 class="section-title"><i class="fa-solid fa-crown"></i>Ceremonia & Recepción</h2>
+    <p class="section-sub"><strong>Sábado 23 de agosto del 2025</strong></p>
+    <p class="section-sub">¡Estás cordialmente invitado a celebrar conmigo!</p>
+    <div>
+      <p><strong>Misa:</strong> 4:00 PM</p>
+      <p><strong>Lugar:</strong> Iglesia Nuestra Señora de Guadalupe, Villa Manuel</p>
+      <hr style="width:90px;margin:22px auto;border:none;height:2px;background:var(--dorado);">
+      <p><strong>Recepción
+<!-- Continuación sección Evento -->
+      :</strong> 5:00 PM</p>
+      <p><strong>Dirección:</strong> Av. Altamira s/n, Villa Cuauhtémoc, Altamira, Tamaulipas</p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Galería -->
+  <section id="galeria" data-animate>
+    <h2 class="section-title"><i class="fa-solid fa-images"></i>Recuerdos</h2>
+    <div class="galeria-grid">
+      <img src="img/IMG2.jpeg" alt="Karla con vestido negro" />
+      <img src="img/IMG3.jpeg" alt="Karla primer plano" />
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Mapa -->
+  <section id="mapa" data-animate>
+    <h2 class="section-title"><i class="fa-solid fa-location-dot"></i>¿Cómo llegar?</h2>
+    <p class="section-sub">Ubicación de la recepción</p>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3582.1487598807847!2d-97.8494218245619!3d22.95089977921556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x866f8c93eb47d95d%3A0x5e9a618e40c7e4b2!2sAv.%20Altamira%2C%2089630%20Villa%20Cuauht%C3%A9moc%2C%20Tamps.!5e0!3m2!1ses-419!2smx!4v1718820000000!5m2!1ses-419!2smx" width="100%" height="340" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Confirmación -->
+  <section id="confirmacion" data-animate>
+    <h2 class="section-title"><i class="fa-solid fa-envelope"></i>Confirma tu asistencia</h2>
+    <form action="#" method="post">
+      <input type="text" name="nombre" placeholder="Tu nombre completo" required>
+      <input type="tel" name="telefono" placeholder="Tu teléfono" required>
+      <button type="submit">Confirmar</button>
+    </form>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Agradecimiento final -->
+  <section id="agradecimiento" data-animate>
+    <h2 class="section-title"><i class="fa-solid fa-heart"></i>Gracias por acompañarme</h2>
+    <p class="section-sub">Tu presencia hace este momento aún más especial. Me llena de alegría saber que compartiremos este recuerdo inolvidable.</p>
+    <p><em>"El amor todo lo espera, todo lo soporta. El amor nunca falla."</em> – 1 Corintios 13:7-8</p>
+  </section>
+
+  <footer>
+    Con cariño, Karla Harumi 💕
+  </footer>
+
+  <!-- Animaciones -->
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const music = document.getElementById('bg-music');
+      const btnLarge = document.getElementById('music-btn-large');
+      if (btnLarge) {
+        btnLarge.addEventListener('click', () => {
+          music.play();
+          btnLarge.innerHTML = '<i class="fa-solid fa-volume-up"></i> Reproduciendo';
+        });
+      }
+
+      gsap.registerPlugin(ScrollTrigger);
+      gsap.to('#hero', {
+        backgroundPosition: '50% 100%',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#hero',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true
+        }
+      });
+
+      gsap.utils.toArray('[data-animate]').forEach((section) => {
+        gsap.from(section, {
+          opacity: 0,
+          y: 80,
+          duration: 1.1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 80%',
+            toggleActions: 'play none none none'
+          }
+        });
+      });
+
+      function spawnButterfly() {
+        const b = document.createElement('div');
+        b.className = 'butterfly';
+        b.style.left = Math.random() * window.innerWidth + 'px';
+        b.style.top = window.scrollY + (Math.random() * window.innerHeight / 2) + 'px';
+        b.style.color = Math.random() > 0.5 ? 'var(--dorado)' : 'var(--verde-esmeralda)';
+        b.innerHTML = '<i class="fa-solid fa-butterfly"></i>';
+        document.body.appendChild(b);
+        gsap.to(b, {
+          opacity: 1,
+          y: '-=100',
+          duration: 3,
+          ease: 'sine.out',
+          onComplete: () => b.remove()
+        });
+      }
+
+      document.addEventListener('scroll', () => {
+        if (Math.random() < 0.15) spawnButterfly();
+      });
+    });
+  </script>
+</body>
+</html>
